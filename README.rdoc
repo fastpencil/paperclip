@@ -178,6 +178,11 @@ of the image with:
   
 If the columns are not present or the attachment is not an image, then these will return nil.
 
+==Testing
+
+Paperclip provides rspec-compatible matchers for testing attachments. See the
+documentation on Paperclip::Shoulda::Matchers for more information.
+
 ==Contributing
 
 If you'd like to contribute a feature or bugfix: Thanks! To make sure your
