@@ -190,6 +190,24 @@ class ThumbnailTest < Test::Unit::TestCase
         assert_no_match(/-resize/, @thumb.transformation_command)
       end
     end
+ 
+    context "with double spaces in the file name" do
+      setup do
+        @spaces_file = File.new(File.join(File.dirname(__FILE__), "fixtures", "double  spaces  in name.png"), 'rb')
+        @thumb = Paperclip::Thumbnail.new(@spaces_file,
+                                          :geometry        => "100x50#",
+                                          :convert_options => "-strip -depth 8")
+ 
+      end
+
+      teardown { @spaces_file.close }
+
+      should "create the thumbnail when sent #make" do
+        dst = @thumb.make
+        assert_match /100x50/, `identify "#{dst.path}"`
+      end
+    end
+
   end
 
   context "A multipage PDF" do
