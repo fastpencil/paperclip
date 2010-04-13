@@ -16,7 +16,16 @@ module Paperclip
       when "js"                      then "application/js"
       when "csv", "xml", "css"       then "text/#{type}"
       else
-        Paperclip.run("file", "--mime-type #{self.path}").split(':').last.strip rescue "application/x-#{type}"
+        begin
+          file_output = Paperclip.run("file", "--mime-type #{self.path}")
+          if file_output =~/cannot open/
+            "application/x-#{type}"
+          else
+            file_output.split(':').last.strip 
+          end
+        rescue Exception
+          "application/x-#{type}"
+        end
       end
     end
 
