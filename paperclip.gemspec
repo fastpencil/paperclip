@@ -9,7 +9,7 @@ exclude_files = ["**/*.rbc", "test/s3.yml", "test/debug.log", "test/paperclip.db
 end.flatten
 
 spec = Gem::Specification.new do |s|
-  s.name              = "jmcnevin-paperclip"
+  s.name              = "paperclip"
   s.version           = Paperclip::VERSION
   s.author            = "Jon Yurek"
   s.email             = "jyurek@thoughtbot.com"
